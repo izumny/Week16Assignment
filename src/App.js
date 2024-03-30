@@ -18,11 +18,8 @@ function App() {
       <Routes>
         <Route path="/Contact" element={<Contact />} />
         <Route path="/YourCloset" element={<YourCloset />}/>
-        
         <Route path="/AddItem" element={<AddItem />}/>
-        
         <Route path="/" element={<Home />}/>
-
       </Routes>
       <Footer />
      
