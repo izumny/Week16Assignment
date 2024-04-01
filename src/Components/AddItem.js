@@ -6,7 +6,7 @@ function AddItem() {
     const [items, setItems] = useState([]);
 
     const addItem = (item) => {
-        setItems([...items, item]);
+        setItems([item, ...items]);
     }
 
     return(

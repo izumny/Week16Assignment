@@ -10,7 +10,7 @@ function DeleteItemButton() {
     const handleShow = () => setShow(true);
   
     return (
-      <>
+      <div>
         <Button variant="danger" onClick={handleShow}>
           Delete
         </Button>
@@ -26,7 +26,7 @@ function DeleteItemButton() {
             </Button>
           </Modal.Footer>
         </Modal>
-      </>
+      </div>
     );
   }
 

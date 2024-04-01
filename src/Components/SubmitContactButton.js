@@ -10,7 +10,7 @@ function SubmitContactButton() {
   const handleShow = () => setShow(true);
 
   return (
-    <>
+    <div>
       <Button variant="danger" onClick={handleShow} className="sbm--btn">
         Submit
       </Button>
@@ -26,7 +26,7 @@ function SubmitContactButton() {
           </Button>
         </Modal.Footer>
       </Modal>
-    </>
+    </div>
   );
 }
 
