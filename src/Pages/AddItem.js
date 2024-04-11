@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState } from 'react'  //used state hook and effect fook
 import AddItemForm from '../Components/AddItemForm';
+import ImageViewer from '../Components/ImageViewer';
 
 function AddItem() {
     const [items, setItems] = useState([]);
@@ -12,8 +13,9 @@ function AddItem() {
     return(
         <>
             <div>
-                <h3>Add item below</h3>
+                <h3 className="h3--additem">Add Item Room</h3>
                 <AddItemForm addItem={addItem} />
+                <ImageViewer />
             </div>
         </>
     );

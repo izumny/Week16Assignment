@@ -1,6 +1,5 @@
 import React from 'react';
 import { useState, useEffect } from 'react'  //used state hook and effect fook
-import SubmitItemButton from '../Components/SubmitItemButton'
 import Badge from 'react-bootstrap/Badge'
 import Card from 'react-bootstrap/Card'
 
@@ -39,6 +38,10 @@ function AddItemForm() {
         brand: newBrand,
         image: newImage
       })
+    }).then(data => data.json())
+    .then(data => {
+        setItems(data);
+        alert('Item was successflly added!')
     }).then(() => {
       getItems();
       setNewName('');
@@ -48,6 +51,9 @@ function AddItemForm() {
       setNewBrand('');
       setNewImage('');
     })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
   }
 
   return (
@@ -67,13 +73,13 @@ function AddItemForm() {
           <label>Item Size:</label>
           <input value={newSize} onChange={(e) => setNewSize(e.target.value)} placeholder='Size' /><br></br>
           
-          <label>Item Brand:</label>
-          <input value={newBrand} onChange={(e) => setNewBrand(e.target.value)} placeholder='Brand' /><br></br>
+          <label>Brand name:</label>
+          <input value={newBrand} onChange={(e) => setNewBrand(e.target.value)} placeholder='Brand name' /><br></br>
           
           <label>Item Image:</label>
-          <input value={newImage} onChange={(e) => setNewImage(e.target.value)} placeholder='Upload image' /><br></br>
+          <input value={newImage} onChange={(e) => setNewImage(e.target.value)} placeholder='Image file name' /><br></br>
           
-          <button onClick={(e) => postNewItem(e)} className="sbm--btn"><SubmitItemButton /></button>
+          <button onClick={(e) => postNewItem(e)} className="sbm--btn">Submit</button>
         </form>
       </Card>
     </div>

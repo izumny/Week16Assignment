@@ -35,10 +35,11 @@ function CustomNavbar() {
                             
                             <Link to="/">Home</Link>
                             
-                            
                             <Link to="/AddItem">Add Item</Link>
                             
                             <Link to="/YourCloset">Your Closet</Link>
+
+                            <Link to="/WishList">Wish List</Link>
                             
                             <Link to="/Contact">Contact Us</Link>                         
                         </Nav>

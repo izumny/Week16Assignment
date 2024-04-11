@@ -1,5 +1,6 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card'
+import HomeImage from '../Components/HomeImage'
 
 function Home() {
     return (
@@ -7,10 +8,11 @@ function Home() {
             <header className="header--home">
             <h4>This is YOUR Closet App!</h4>
             </header>
+            <HomeImage />
             <main className="main--home">
             <Card className="card--home">
                 <Card.Body>
-                    <Card.Text>Are you aware of ALL clothes you have in your closet?</Card.Text>
+                    <Card.Text>Are you aware of ALL of the clothes you have in your closet?</Card.Text>
                     <Card.Text>Have you found out you bought similar clothes you already had?</Card.Text>
                     <Card.Text>Do you have any clothes that you bought before but never wear them yet?</Card.Text>
                 </Card.Body>

@@ -1,7 +1,5 @@
 import React from 'react';
 import { useState, useEffect } from 'react'  //used state hook and effect hook
-import DeleteItemButton from '../Components/DeleteItemButton'
-import UpdateItemButton from '../Components/UpdateItemButton'
 import Card from 'react-bootstrap/Card'
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -31,16 +29,23 @@ function YourCloset() {
       
   }
 
-
 // DELETE
   function deleteItem(id) {
     fetch(`${MOCK_API_URL}/${id}`,{
       method: 'DELETE'
-    }).then(() => getItems())
+    }).then(() => {
+      alert('Item was successflly deleted!')
+      getItems();
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
+    // .then(() => getItems())
   }
 
 // UPDATE
-function updateItem(e, itemObject) {  
+function updateItem(e, itemObject) {
+  console.log("Updating the item...", itemObject);  
     e.preventDefault();
 
     const updatedItemObject = {
@@ -56,19 +61,29 @@ function updateItem(e, itemObject) {
       method: 'PUT',
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify(updatedItemObject),
-    }).then(() => {
+    }).then((data) => {
+      //console.log("updateItem data:", data);
+      return data.json()
+    })
+    .then(() => {
+      //console.log("Item was successfully updated!");
+      alert('Item was successflly updated!')
       getItems();
       setUpdatedName('');
       setUpdatedType('');
-      setUpdatedColor('');
       setUpdatedSize('');
+      setUpdatedColor('');
       setUpdatedBrand('');
       setUpdatedImage('');
+    })
+    .catch((error) => {
+      console.error('Error:', error);
     });
   }
 
   return (
     <div>
+      <h3 className="h3--yourcloset">Your Closet Room</h3>
         {items.map((item, index) => (
         <div className="itemContainer" key={index}>
             <Container>
@@ -83,9 +98,7 @@ function updateItem(e, itemObject) {
               Brand: {item.brand}<br></br>
               Image: {item.image}<br></br>
             
-            <button onClick={() => deleteItem(item.id)} className="dlt--btn">
-              <DeleteItemButton />
-            </button>
+            <button onClick={() => deleteItem(item.id)} className="dlt--btn">Delete</button>
             </Card>
             </Col>
             <Col>
@@ -110,9 +123,7 @@ function updateItem(e, itemObject) {
                   <label>Update Image:</label>
                   <input onChange={(e) => setUpdatedImage(e.target.value)}></input><br></br>
                   
-                  <button type="submit" className="udt--btn">
-                    <UpdateItemButton />
-                  </button>
+                  <button type="submit" className="udt--btn">Update</button>
                 </form>
               </Card>
             </Col>
@@ -125,3 +136,31 @@ function updateItem(e, itemObject) {
 }
 
 export default YourCloset;
+
+
+
+/* other way to empty the input form of update
+.then(() => {
+  //console.log("Item was successfully updated!");
+  alert('Item was successflly updated!')
+  getItems();
+
+  //let typeInput = document.getElementById(`type-input-${itemObject.id}`)
+  //console.log("Input element:",typeInput);
+  //typeInput.value = ""
+
+  //console.log("updated name:", updatedName);
+  setUpdatedName('');
+  setUpdatedType('');
+  setUpdatedSize('');
+  setUpdatedColor('');
+  setUpdatedBrand('');
+  setUpdatedImage('');
+})
+ after <input this for each. 
+//id={`name-input-${item.id}`}
+//id={`type-input-${item.id}`} 
+//id={`color-input-${item.id}`} 
+//id={`size-input-${item.id}`} 
+//id={`brand-input-${item.id}`} 
+//id={`image-input-${item.id}`} */
