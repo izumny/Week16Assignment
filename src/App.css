@@ -1,6 +1,7 @@
 body{
    background-color:#5f9ea0;
    justify-content: center;
+   padding-top: 60px;
   
 }
 
@@ -46,6 +47,12 @@ body{
 
 .nav--main {
    background-color:cornsilk;
+   position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+
 }
 
 .nav--app {

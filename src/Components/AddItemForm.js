@@ -5,7 +5,7 @@ import Card from 'react-bootstrap/Card'
 
 function AddItemForm() {
   const MOCK_API_URL = "https://66038fa12393662c31cf3170.mockapi.io/12345/clothes"
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState([]);  //set up the state variables using useState hook
  //POST
   const [newName, setNewName] = useState('');
   const [newType, setNewType] = useState('');
@@ -14,21 +14,22 @@ function AddItemForm() {
   const [newBrand, setNewBrand] = useState('');
   const [newImage, setNewImage] = useState('');
  
- useEffect(() => {
-    getItems();
+ useEffect(() => {    //useEffect hook to fetch the list of dancers from the mockAPI
+    getItems();                          //when the CMP mounts
   }, []);
   
-  function getItems() {
-    fetch(MOCK_API_URL)
+  //API functions
+  function getItems() {   //fetch the list of items from the mAPI and update items state
+    fetch(MOCK_API_URL)                   //with retrieved data
     .then(data => data.json())
     .then(data => setItems(data))
   }
 
-  function postNewItem(e){
-    e.preventDefault();
+  function postNewItem(e){    //triggered when the (e)(new dancer is submitted) happenes
+    e.preventDefault();       //method prevent a browser refresh
 
     fetch(MOCK_API_URL, {
-      method: 'POST',
+      method: 'POST',         //send POST request to the mAPI w/ new item data
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify({
         name: newName,
@@ -38,7 +39,7 @@ function AddItemForm() {
         brand: newBrand,
         image: newImage
       })
-    }).then(data => data.json())
+    }).then(data => data.json())        // then RESET the form inputs w/ empty string
     .then(data => {
         setItems(data);
         alert('Item was successflly added!')
@@ -51,7 +52,7 @@ function AddItemForm() {
       setNewBrand('');
       setNewImage('');
     })
-    .catch((error) => {
+    .catch((error) => {         // when error was caught, it will be announced
       console.error('Error:', error);
     });
   }

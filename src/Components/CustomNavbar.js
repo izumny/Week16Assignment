@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState, useEffect } from 'react'
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import Button from 'react-bootstrap/Button';
@@ -10,6 +11,30 @@ import { Link } from 'react-router-dom'
 
 
 function CustomNavbar() {
+
+    const [scrolled,setScrolled]=useState(false);
+
+    const handleScroll=() => {
+        const offset=window.scrollY;
+    if(offset > 300 ){
+      setScrolled(true);
+    }
+    else{
+      setScrolled(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll',handleScroll);
+    return () => {
+        window.addEventListener('scroll',handleScroll);
+    }
+  }, []);
+
+  let navbarClasses=['navbar'];
+  if(scrolled){
+    navbarClasses.push('scrolled');
+  }
   return(
     <div>
     
